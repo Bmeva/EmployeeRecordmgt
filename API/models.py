@@ -95,17 +95,26 @@ class EmployeeDetails(models.Model):
 class Department(models.Model):
     name_of_department = models.CharField(max_length=120)
     department_code = models.CharField(unique=True, max_length=120)
-    department_head = models.OneToOneField('EmployeeDetails', max_length=120, null=True,  blank=True, on_delete=models.SET_NULL)
+    department_head = models.ForeignKey('EmployeeDetails', max_length=120, null=True,  blank=True, on_delete=models.SET_NULL, related_name="department_head")
+    dept_supervisors = models.ManyToManyField('EmployeeDetails', blank=True, related_name="department_super")
     description = models.CharField(max_length=500)
     created_date = models.DateField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
+    #Foreignkey establishes a onetomany relationship
+    #department_head = models.ManyToManyField('EmployeeDetails',
+    # ManyToManyField to represent the relationship between employees and 
+    # departments can be useful if you want to allow multiple employees
+    
+    # A ManyToOne relationship in Django is represented using a ForeignKey. 
+    # This is useful when you want to define a relationship where:
+
+    # Each department can have one and only one department head.
+    # One employee can be the head of multiple departments.
     
     def __str__(self):
          
         return self.name_of_department
     
-
-
 
 class Skill(models.Model):
     name = models.CharField(max_length=100, unique=True)
@@ -166,6 +175,9 @@ class JobRequirement(models.Model):
      
     job_title = models.CharField(max_length=100)
     skill = models.ForeignKey(Skill, on_delete=models.CASCADE)
+    
+    # A ForeignKey establishes a one-to-many relationship, meaning that one employee can be 
+    # associated with multiple departments. 
     required_level = models.CharField(max_length=100, choices=SKILL_REQUIREMENT)  # E.g., Beginner, Intermediate, Expert
 
     def __str__(self):

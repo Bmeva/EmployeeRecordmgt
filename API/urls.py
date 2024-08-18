@@ -25,6 +25,12 @@ router.register('Trainingneedviewset', views.Trainingneedviewset, basename='Trai
 
 router.register('departments', views.Departmentviewset, basename='department')
 
+router.register('RegisterViewSet', views.RegisterViewSet, basename='RegisterViewSet')
+
+
+from .views import LoginView
+from .views import LogoutView
+from .views import CurrentUserView
 
 
 #if i want to open a default router path then i would use this
@@ -32,11 +38,18 @@ router.register('departments', views.Departmentviewset, basename='department')
 #     return redirect('/Skillviewset/')
 
 urlpatterns = [
+    
+    path('current-user/', CurrentUserView.as_view(), name='current-user'),
     path('', views.home, name = 'home'),
      #path('', redirect_to_skillviewset, name='redirect-to-skillviewset'),  
      #path('', include(router.urls)),
      
      path('api/', include(router.urls)),
+     
+     path('login/', LoginView.as_view(), name='login'),
+     
+     path('logout/', LogoutView.as_view(), name='logout'),
+     path('current-user/', CurrentUserView.as_view(), name='current-user'),
      
     
     

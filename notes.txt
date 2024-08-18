@@ -3,6 +3,9 @@ vs code
 gitbase
 
 
+mine
+Nedva@54
+
 Install Node js -- https://nodejs.org/en/
 create a virtual environment by typing python -m venv env
 
@@ -489,3 +492,20 @@ then select global import or individual import
 
 for the edit i used material ui library 
 https://mui.com/material-ui/material-icons/?query=edit
+
+
+install axios using  npm install axios. i used it for the register user 
+
+
+for the login you have to add 'rest_framework.authtoken', to the installed apps
+and then run migrations
+
+to display pop up message just use
+ alert('Logout successful');
+
+ else advanced methord would be to install
+ npm install react-toastify
+
+ then import 
+ import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';

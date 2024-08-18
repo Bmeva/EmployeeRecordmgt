@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'API',
     "corsheaders",
+    'rest_framework.authtoken',
    
 ]
 
