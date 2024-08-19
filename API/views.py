@@ -74,7 +74,8 @@ class EmpAPIviewset(viewsets.ViewSet):
 
 
 class Departmentviewset(viewsets.ModelViewSet):
-    #permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
+    
     queryset = Department.objects.all()
     serializer_class = DepartmentSerializer
 
@@ -164,7 +165,7 @@ class Departmentviewset(viewsets.ModelViewSet):
 
 class Skillviewset(viewsets.ViewSet):
     
-    #permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
     
     queryset = Skill.objects.all()
     serializer_class = SkillSerializer
@@ -210,7 +211,7 @@ class Skillviewset(viewsets.ViewSet):
 
 class Departmentviewset(viewsets.ViewSet):
     
-    #permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
     
     queryset = Department.objects.all()
     serializer_class = DepartmentSerializer
@@ -254,7 +255,7 @@ class Departmentviewset(viewsets.ViewSet):
 
 class Trainingviewset(viewsets.ViewSet):
     
-    #permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
     
     queryset = Training.objects.all()
     serializer_class = TrainingSerializer
@@ -347,7 +348,7 @@ class   EmployeeSkillviewset(viewsets.ViewSet):
 
 class   JobRequirementviewset(viewsets.ViewSet):
     
-    #permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
     
     queryset = JobRequirement.objects.all()
     serializer_class = JobRequirementSerializer
@@ -391,7 +392,7 @@ class   JobRequirementviewset(viewsets.ViewSet):
 
 class Trainingneedviewset(viewsets.ViewSet):
     
-    #permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
     
     queryset = TrainingNeed.objects.all()
     serializer_class = TrainingneedSerializer
@@ -449,6 +450,8 @@ class LoginView(APIView):
 
 
 class RegisterViewSet(viewsets.ViewSet):
+       
+    permission_classes = [IsAuthenticated]
     serializer_class = RegisterSerializer
 
     def create(self, request):

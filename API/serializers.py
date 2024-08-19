@@ -157,6 +157,8 @@ class EmployeeSkillSerializer(serializers.ModelSerializer):
         fields = '__all__'     
 
 
+
+
 class JobRequirementSerializer(serializers.ModelSerializer):
     class Meta:
         model = JobRequirement

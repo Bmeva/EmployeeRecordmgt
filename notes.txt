@@ -2,6 +2,8 @@ Python
 vs code
 gitbase
 
+npm list
+
 
 mine
 Nedva@54
