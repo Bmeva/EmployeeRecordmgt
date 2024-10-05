@@ -8,7 +8,7 @@ from .serializers import EmployeeDetailsSerializers, LoginSerializer, RegisterSe
 
 from rest_framework.response import Response
 
-from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly, AllowAny
 from rest_framework.authentication import TokenAuthentication #for logout
 
 from rest_framework import status
@@ -451,8 +451,15 @@ class LoginView(APIView):
 
 class RegisterViewSet(viewsets.ViewSet):
        
-    permission_classes = [IsAuthenticated]
     serializer_class = RegisterSerializer
+    
+    def get_permissions(self):
+        if self.action in ['create']:
+            permission_classes = [AllowAny]
+        else:
+            permission_classes = [IsAuthenticated]
+        return [permission() for permission in permission_classes]
+
 
     def create(self, request):
         serializer = self.serializer_class(data=request.data)

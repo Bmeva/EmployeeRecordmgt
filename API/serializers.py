@@ -63,11 +63,16 @@ class LoginSerializer(serializers.Serializer):
 class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, required=False)
     email = serializers.EmailField(required=False)
-
+    #i dont need to check for unique user input bcos User model already checks for uniquea
     class Meta:
         model = User
         fields = ('username', 'email', 'password')
 
+    def validate_email(self, value):
+        if User.objects.filter(email=value).exists():
+            raise serializers.ValidationError("This email is already registered, please use a different one.")
+        return value
+    
     def create(self, validated_data):
         user = User.objects.create_user(
             username=validated_data['username'],
